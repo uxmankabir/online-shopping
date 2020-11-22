@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-6 mx-auto">
+    <!-- News jumbotron -->
+    <div class="text-center admin jumbotron px-3 py-4">
+      <img src="https://cahsi.utep.edu/wp-content/uploads/kisspng-computer-icons-user-clip-art-user-5abf13db5624e4.1771742215224718993529.png" height="150" class="mx-auto">
+
+      <%= form_for(@user, html: {class: "px-lg-5"}) do |f|%>
+
+        <div class="row">
+          <div class="col">
+            <div class="md-form">
+              <%= f.text_field :first_name, class: 'form-control', required: true %>
+              <%= f.label :first_name %>
+            </div>
+          </div>
+          <div class="col">
+            <div class="md-form">
+              <%= f.text_field :last_name, class: 'form-control', required: true %>
+              <%= f.label :last_name %>
+            </div>
+          </div>
+        </div>
+
+        <div class="md-form mt-0">
+          <%= f.email_field :email, class: 'form-control', required: true %>
+          <%= f.label :email %>
+          <small class="form-text text-muted email-hint"></small>
+        </div>
+
+        <div class="text-center">
+          <%= f.submit "Save User", class: 'btn btn-primary'%>
+        </div>
+      <% end %>
+
+      <%= render "shared/model_messages", model: @user %>
+
+    </div>
+    <!-- News jumbotron -->
+
+  </div>
+</div>

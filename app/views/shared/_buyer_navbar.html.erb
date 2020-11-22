@@ -1,0 +1,38 @@
+<!--Main Navigation-->
+<header>
+
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark primary-color scrolling-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="#"><strong>Buyer</strong></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to 'All Products', buyers_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item fav-nav">
+            <%- favourites = Favourite.where(user_id: current_user.id) %>
+            <%= link_to 'Favourites', favourites_path, class: "nav-link" %> <% if favourites.present? %> <small class="items-counter"><%= favourites.count %></small> <% end %>
+          </li>
+          <li class="nav-item cart-nav">
+            <%- carts = Cart.where(user_id: current_user.id) %>
+            <%= link_to "Cart", carts_path, class: "nav-link" %><% if carts.present? %> <small class="items-counter"><%= carts.count %></small> <% end %>
+          </li>
+        </ul>
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <a class="nav-link"><i class="far fa-user"></i> <%= current_user.first_name %></a>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Logout', logout_path, method: :delete, class: 'nav-link' %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+<!--Main Navigation-->

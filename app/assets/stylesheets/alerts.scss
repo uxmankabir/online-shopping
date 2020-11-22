@@ -1,0 +1,38 @@
+$primaryColor: #004085;
+$secondaryColor: #383d41;
+$successColor: #155724;
+$dangerColor: #721c24;
+$warningColor: #856404;
+$infoColor: #0c5460;
+$lightColor: #818182;
+$darkColor: #1b1e21;
+
+.alert{
+  border: 0;
+  border-left: 5px solid transparent;
+  border-radius: 0;
+  &-primary{
+    border-color: $primaryColor;
+  }
+  &-secondary{
+    border-color: $secondaryColor;
+  }
+  &-success{
+    border-color: $successColor;
+  }
+  &-danger{
+    border-color: $dangerColor;
+  }
+  &-warning{
+    border-color: $warningColor;
+  }
+  &-info{
+    border-color: $infoColor;
+  }
+  &-light{
+    border-color: $lightColor;
+  }
+  &-dark{
+    border-color: $darkColor;
+  }  
+}

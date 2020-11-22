@@ -1,0 +1,48 @@
+<% if products.present? %>
+  <% products.each do |product|%>
+    <div class="card mb-3">
+        <div class="card-body px-5 py-5">
+          <div class="media">
+            <div class="media-body my-auto">
+              <h4 class="my-0 font-weight-bold"><%= product.name %></h4>
+              <small class="my-0 text-black-50"><%= time_ago_in_words(product.created_at) %> ago</small>
+            </div>
+            <div class="dropleft">
+              <div class="product-actions dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+              </div>
+              <div class="dropdown-menu">
+                <% if current_user.role == "admin"%>
+                  <%= link_to 'Approve', approve_product_path(product), class: "dropdown-item", method: :put if product.status != "approved" %>
+                  <%= link_to 'Reject', reject_product_path(product), class: "dropdown-item", method: :put if product.status != "rejected" %>
+                <% end %>
+                <% if current_user.role == "buyer"%>
+                  <%= link_to 'Add to Favourites', add_favourite_path(product), class: "dropdown-item", method: :post unless Favourite.where(user_id: current_user.id, product_id: product.id).present? %>
+                  <%= link_to 'Add to Cart', add_cart_path(product), class: "dropdown-item", method: :post unless Cart.where(user_id: current_user.id, product_id: product.id).present? %>
+                <% end %>
+                <% if current_user.role == "seller"%>
+                  <%= link_to 'Edit', edit_product_path(product), class: "dropdown-item" %>
+                  <%= link_to 'Delete', product_path(product), class: "dropdown-item", method: :delete %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="product-description">
+            <%= product.description %>
+            <hr>
+            <div class="text-center">
+            <%= link_to 'View Product', product_path(product) %>
+            </div>
+            <hr>
+            <small class="my-0 text-black-50"> Created at: <%= product.created_at.to_formatted_s(:long) %></small>
+          </div>
+        </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <p class="h1-responsive m-0 text-black-50 text-center">Products not found</p>
+    </div>
+  </div>
+<% end %>

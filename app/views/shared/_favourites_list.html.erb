@@ -1,0 +1,44 @@
+<% if favourites.present? %>
+  <% favourites.each do |favourite|%>
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="media">
+          <img class="d-flex align-self-center mr-3" src="https://cahsi.utep.edu/wp-content/uploads/kisspng-computer-icons-user-clip-art-user-5abf13db5624e4.1771742215224718993529.png" height="50" alt="Generic placeholder image">
+          <div class="media-body my-auto">
+            <h4 class="my-0 font-weight-bold"><%= favourite.product.user.first_name %></h4>
+            <small class="my-0 text-black-50"><%= time_ago_in_words(favourite.product.created_at) %> ago</small>
+          </div>
+          <div class="dropleft">
+            <div class="product-actions dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-ellipsis-v"></i>
+            </div>
+            <div class="dropdown-menu">
+              <% if current_user.role == "buyer"%>
+                <%= link_to 'Remove from Favourites', favourite_path(favourite), class: "dropdown-item", method: :delete %>
+                <%= link_to 'Add to Cart', add_cart_path(favourite.product), class: "dropdown-item", method: :post unless Cart.where(user_id: current_user.id, product_id: favourite.product.id).present? %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="product-description">
+          <strong class="text-primary">Product Name: </strong><%= favourite.product.name %>
+          <br>
+          <strong class="text-primary">Description: </strong><%= truncate("#{favourite.product.description}", :length => 100) %>
+          <br>
+          <strong class="text-primary">Price: </strong><%= favourite.product.price %>$
+          <div class="text-center">
+            <%= link_to 'View Product', product_path(favourite.product) %>
+          </div>
+          <hr>
+          <small class="my-0 text-black-50"> Created at: <%= favourite.product.created_at.to_formatted_s(:long) %></small>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <p class="h1-responsive m-0 text-black-50 text-center">Favourites not found</p>
+    </div>
+  </div>
+<% end %>

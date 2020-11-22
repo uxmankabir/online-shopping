@@ -1,0 +1,36 @@
+.buyer-seller{
+  $bg: #4285f4;
+  $fg: lighten($bg,20%);
+  $borderWidth: 2px;
+
+  input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+  }
+
+  label {
+    color: $bg;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 20px;
+    margin: 0;
+  }
+
+  input[type=radio]:checked + label{
+    color: lighten($bg,60%);
+    background: $bg;
+  }
+
+  label + input[type=radio] + label {
+    border-left: solid $borderWidth $bg;
+  }
+  .radio-group {
+    border: solid $borderWidth $bg;
+    display: inline-block;
+    margin-top: 10px;
+    border-radius: .125rem;
+    overflow: hidden;
+  }
+}

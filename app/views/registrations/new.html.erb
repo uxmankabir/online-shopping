@@ -1,0 +1,52 @@
+<!-- News jumbotron -->
+<div class="registration jumbotron px-3 py-4">
+  <img src="https://cahsi.utep.edu/wp-content/uploads/kisspng-computer-icons-user-clip-art-user-5abf13db5624e4.1771742215224718993529.png" height="150" class="mx-auto">
+
+  <%= form_with(model: @user, url: sign_up_path, class: 'mx-lg-5', local: true) do |f|%>
+
+    <div class="buyer-seller text-center">
+      <div class="radio-group">
+        <%= f.radio_button(:role, "buyer", checked: true) %><%= f.label(:role_buyer, "Buyer") %><%= f.radio_button(:role, "seller") %><%= f.label(:role_seller, "Seller") %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="md-form">
+          <%= f.text_field :first_name, class: 'form-control', required: true %>
+          <%= f.label :first_name %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="md-form">
+          <%= f.text_field :last_name, class: 'form-control', required: true %>
+          <%= f.label :last_name %>
+        </div>
+      </div>
+    </div>
+
+    <div class="md-form mt-0">
+      <%= f.email_field :email, class: 'form-control', required: true %>
+      <%= f.label :email %>
+      <small class="form-text text-muted email-hint"></small>
+    </div>
+
+    <div class="md-form">
+      <%= f.password_field :password, class: 'form-control', minlength:"6", required: true %>
+      <%= f.label :password %>
+      <small class="form-text text-muted password-hint"></small>
+    </div>
+    <div class="text-center">
+      <%= f.submit "Create Account", class: 'btn btn-primary'%>
+    </div>
+  <% end %>
+
+  <div class="mt-3 text-center">
+    Already have an account? <%= link_to 'Sign in', sign_in_path %>
+  </div>
+  
+  <%= render "shared/flash_messages" %>
+  <%= render "shared/model_messages", model: @user %>
+
+</div>
+<!-- News jumbotron -->

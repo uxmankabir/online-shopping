@@ -1,0 +1,36 @@
+<div class="product jumbotron px-3 py-4">
+  <p class="h3 my-4 text-center">Product Details</p>
+
+  <%= form_with(model: @product, url: products_path, class: 'mx-lg-5', local: true) do |f|%>
+
+    <div class="md-form mt-0">
+      <%= f.text_field :name, class: 'form-control', required: true %>
+      <%= f.label :name %>
+    </div>
+
+    <div class="md-form">
+      <%= f.number_field :price, class: 'form-control', min:0, required: true %>
+      <%= f.label :price %>
+    </div>
+
+    <div class="md-form">
+      <%= f.text_area :description, rows: 5, class: 'md-textarea form-control', required: true %>
+      <%= f.label :description %>
+    </div>
+
+    <%= f.fields_for :images do |image| %>
+      <div class="custom-file mb-2">
+        <%= image.file_field :picture, class: 'custom-file-input' %>
+        <%= image.label :picture, "Picture #{image.index+1}", class: "custom-file-label" %>
+      </div>
+    <% end %>
+    
+    <div class="text-center">
+      <%= f.submit "Create Product", class: 'btn btn-primary'%>
+    </div>
+  <% end %>
+  
+  <%= render "shared/model_messages", model: @product %>
+
+</div>
+<!-- News jumbotron -->

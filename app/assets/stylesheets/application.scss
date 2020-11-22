@@ -13,3 +13,38 @@
  *= require_tree .
  *= require_self
  */
+ #main-container{
+   margin-top: 70px;
+ }
+ .product-actions{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover{
+    background: #eee;
+  }
+ }
+ .dropdown-toggle::after {
+  display: none;
+ }
+ .dropleft .dropdown-toggle::before {
+  display: none;
+}
+.cart-nav, .fav-nav{
+  display: inherit;
+  .items-counter{
+    background-color: red;
+    color: white;
+    padding: 0 3px;
+    height: 20px;
+    border-radius: 0;
+  }
+}
+.carousel-image{
+  max-height: 500px;
+  object-fit: cover;
+}

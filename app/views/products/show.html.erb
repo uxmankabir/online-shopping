@@ -1,0 +1,34 @@
+<br><br>
+<div class="jumbotron px-3 py-4">
+  <% if @product.present? %>
+    <h2 class="text-center"><%= @product.name %></h2>
+    <hr>
+    <h5 class="text-center"><%= "By: #{@product.user.first_name} #{@product.user.last_name}" %></h5>
+    <h5 class="text-center text-primary h5"><%= @product.price %>$</h5>
+
+    <p class="px-5"><%= @product.description %></p>
+
+    <% if @product.images.present? %>
+
+      <%= render "product_images", images: @product.images %>
+
+    <% end %>
+
+    <hr>
+
+    <div class="row mx-4">
+      <div class="col-sm-12 col-md-6 text-sm-center text-md-left">
+        <small class="my-0 text-black-50"> Created at: <%= @product.created_at.to_formatted_s(:long) %></small>
+      </div>
+      <div class="col-sm-12 col-md-6 text-sm-center text-md-right">
+        <small class="my-0 text-black-50"><%= time_ago_in_words(@product.created_at) %> ago</small>  
+      </div>
+    </div>
+
+
+
+
+  <% else %>
+
+  <% end %>
+</div>
